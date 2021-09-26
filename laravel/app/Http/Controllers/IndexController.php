@@ -32,7 +32,7 @@ class IndexController extends Controller
         $file = $request->file('xml');
 
         if($file->extension() !== 'xml'){
-            return redirect()->back()->withErrors(['error' => 'Wrong file extension was uploaded']);
+            return redirect()->back()->withErrors(['error' => 'Error! Wrong file extension']);
         }
 
         $file = simplexml_load_string($request->file('xml')->get());
@@ -48,7 +48,7 @@ class IndexController extends Controller
         }
 
         if(!isset($preparedXML)){
-            return redirect()->back()->withErrors(['error' => 'XML file is empty']);
+            return redirect()->back()->withErrors(['error' => 'Error! XML file is empty']);
         }
 
         Employee::insert($preparedXML);
