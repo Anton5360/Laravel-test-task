@@ -23,6 +23,10 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         $departments = Department::all()->pluck('id')->toArray();
+        $salaryType = $this->faker->randomElement(['hourly', 'monthly']);
+
+        $salaryBoundaries = $salaryType === 'monthly' ? [1000, 5000] : [10, 50];
+
         return [
             'department_id' => $this->faker->randomElement($departments),
             'first_name' => $this->faker->firstName(),
@@ -30,8 +34,9 @@ class EmployeeFactory extends Factory
             'middle_name' => $this->faker->name(),
             'birthdate' => $this->faker->dateTimeBetween('-50 years', '-18 years'),
             'position' => $this->faker->randomElement(['tester', 'developer', 'UI/UX designer', 'HR']),
-            'salary_type' => $this->faker->randomElement(['hourly', 'monthly']),
-            'salary' => $this->faker->randomFloat(8, 1000, 5000)
+            'salary_type' => $salaryType,
+            'work_hours' => $this->faker->randomFloat(1, 0, 200),
+            'salary' => $this->faker->randomFloat(8, ...$salaryBoundaries)
         ];
     }
 }
