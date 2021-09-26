@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+table th, table td {
+  border: 1px solid black;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+h2.success-downloading {
+  color: green;
+}
+h2.error-downloading {
+  color: red;
+}
+
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
