@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'employees'])->name('default');
+Route::get('/employees', [IndexController::class, 'employees'])->name('all-employees-list');
+
+Route::get('/employees/{department}', [IndexController::class, 'departmentEmployees'])
+    ->whereNumber('department')
+    ->name('department-employees');
+
+Route::post('/upload-xml', [IndexController::class, 'uploadXML'])->name('upload-xml');
