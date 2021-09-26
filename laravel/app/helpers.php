@@ -8,7 +8,7 @@ use Illuminate\View\View;
 if(!function_exists('getEmployeeListViewWithParams')){
     function getEmployeeListViewWithParams(LengthAwarePaginator $pagination): View
     {
-        return view('index.layout', [
+        return view('index.content', [
             'employees' => Employee::getPreparedPaginatedItems($pagination->items()),
             'perPage' => $pagination->perPage(),
             'pagesQuantity' => $pagination->lastPage(),
