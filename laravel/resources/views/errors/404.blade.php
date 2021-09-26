@@ -7,15 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        .full-screen{
-            width: 100vw;
-            height: 100vh;
-            display:flex;
-            justify-content:center;
-            align-items: center
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 <body>
 <div class="full-screen">
