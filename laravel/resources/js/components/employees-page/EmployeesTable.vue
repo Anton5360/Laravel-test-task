@@ -117,9 +117,6 @@
             this.copyOfEmployeesPerPage = this.employeesPerPage;
             this.copyOfCurrentPage = this.currentPage;
         },
-        computed: {
-
-        },
         methods: {
             changeTableInfo(isNeededCurrentPage = true) {
                 let neededPage = isNeededCurrentPage ? this.copyOfCurrentPage : 1;
@@ -133,18 +130,4 @@
     }
 </script>
 
-<style scoped>
-h2{
-    text-align: center;
-    margin-bottom: 50px;
-}
 
-h2.success-downloading{
-    color: green;
-}
-
-h2.error-downloading{
-    color: red;
-}
-
-</style>
