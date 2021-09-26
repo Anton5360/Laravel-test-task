@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $birthdate
  * @property string $position
  * @property string $salary_type
+ * @property float $work_hours
  * @property float $salary
  * @property string $created_at
  * @property string $updated_at
@@ -33,6 +34,7 @@ class Employee extends Model
         'birthdate',
         'position',
         'salary_type',
+        'work_hours',
         'salary',
     ];
 
