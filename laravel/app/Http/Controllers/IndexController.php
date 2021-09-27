@@ -36,19 +36,7 @@ class IndexController extends Controller
             return redirect()->back()->withErrors(['error' => 'Error! Wrong file extension']);
         }
 
-        $file = simplexml_load_string($request->file('xml')->get());
-        $counter = 0;
-
-        foreach($file as $employee){
-            $xmlArray = json_decode(json_encode($employee),1);
-
-            foreach($xmlArray as $key => $employeeInfo)
-                $preparedXML[$counter][$key] = $employeeInfo;
-
-            $counter++;
-        }
-
-        if(!isset($preparedXML)){
+        if(!$preparedXML = getPreparedXmlFile($request->file('xml')->get())){
             return redirect()->back()->withErrors(['error' => 'Error! XML file is empty']);
         }
 

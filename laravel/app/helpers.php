@@ -17,7 +17,9 @@ if(!function_exists('getEmployeeListViewWithParams')){
             'departments' => Department::allWithoutTimestamps()
         ]);
     }
-}if(!function_exists('validatePreparedXmlOrFail')){
+}
+
+if(!function_exists('validatePreparedXmlOrFail')){
     function validatePreparedXmlOrFail(array $preparedXML): void
     {
         Validator::make($preparedXML, [
@@ -28,8 +30,34 @@ if(!function_exists('getEmployeeListViewWithParams')){
             '*.birthdate' => 'bail|required|date',
             '*.position' => 'bail|required|string',
             '*.salary_type' => 'bail|required|string|in:hourly,monthly',
-            '*.work_hours' => 'bail|required|float',
-            '*.salary' => 'bail|required|float',
+            '*.work_hours' => 'bail|required|numeric',
+            '*.salary' => 'bail|required|numeric',
         ])->validate();
+    }
+}
+
+if(!function_exists('getPreparedXmlFile')){
+    /**
+     * @param string $xml
+     * @return array|false
+     */
+    function getPreparedXmlFile(string $xml)
+    {
+        [$file, $preparedXML, $counter] = [
+            simplexml_load_string($xml),
+            [],
+            0
+        ];
+
+        foreach($file as $employee){
+            $xmlArray = json_decode(json_encode($employee),1);
+
+            foreach($xmlArray as $key => $employeeInfo)
+                $preparedXML[$counter][$key] = $employeeInfo;
+
+            $counter++;
+        }
+
+        return $preparedXML ?: false;
     }
 }
