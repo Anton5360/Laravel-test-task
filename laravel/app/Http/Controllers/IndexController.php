@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class IndexController extends Controller
@@ -50,6 +51,10 @@ class IndexController extends Controller
         if(!isset($preparedXML)){
             return redirect()->back()->withErrors(['error' => 'Error! XML file is empty']);
         }
+
+
+        validatePreparedXmlOrFail($preparedXML);
+
 
         Employee::insert($preparedXML);
 
